@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>AbbaWeb</title>
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="hider">
+        <img src="{% static 'media/close.svg' %}" alt="">
+        <img src="{% static 'media/logo.svg' %}" alt="">
+        <img src="{% static 'media/menu.svg' %}" alt="">
+    </div>
+    <div class="hero_hider">
+        <a href="{% url 'index' %}">
+            <img class="arrow" src="{% static 'media/Arrow_Left_LG.png' %}" alt="">
+        </a>
+        <h1 class="hider_xizmat">Xizmat turini tanlang</h1>
+    </div>
+    <div class="service_list">
+        {% for category in categories %}
+        <div class="service_item">
+            <a class="page_3" href="{% url 'projects' category.id %}">
+                <img class="pages_img_3" src="{{ category.get_photo }}" alt="">
+                <p class="page_1_bot">{{ category.title }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+
+.container {
+    max-width: 384px;
+}
+
+.service_list {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 12px;
+    width: calc(50% - 10px);
+    margin-left: 13px;
+}
+
+.service_item {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 12px;
+    margin-left: 13px;
+}

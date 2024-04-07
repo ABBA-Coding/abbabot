@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>AbbaWeb</title>
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="hider">
+        <img src="{% static 'media/close.svg' %}" alt="">
+        <img src="{% static 'media/logo.svg' %}" alt="">
+        <img src="{% static 'media/menu.svg' %}" alt="">
+    </div>
+    <div class="hero">
+        <h1 class="hero_h1">Bo’limni tanlang</h1>
+    </div>
+    <div class="buttons">
+        {% for category in headcategories %}
+        <a class="btn_1" href="{% url 'headcategory' category.id %}">
+            <img class="globus_img" src="{{ category.image.url }}" alt="">
+            <p class="btn_1_web">{{ category.title }}</p>
+            <p class="btn_1_name">{{ category.owner }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+
+</html>
