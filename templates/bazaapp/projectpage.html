@@ -14,13 +14,13 @@
 <body>
 <div class="container">
     <div class="hider">
-        <img src="{% static 'media/close.svg' %}" alt="">
-        <img src="{% static 'media/logo.svg' %}" alt="">
-        <img src="{% static 'media/menu.svg' %}" alt="">
+        <img src="{% static 'logos/close.svg' %}" alt="">
+        <img src="{% static 'logos/logo.svg' %}" alt="">
+        <img src="{% static 'logos/menu.svg' %}" alt="">
     </div>
     <div class="hero_3">
         <a href="{% url 'index' %}">
-            <img class="arrow_img_1" src="{% static 'media/Arrow_Left_LG.png' %}" alt="">
+            <img class="arrow_img_1" src="{% static 'logos/Arrow_Left_LG.png' %}" alt="">
         </a>
         <h1 class="hero_3_project">Proyektlar</h1>
     </div>
@@ -28,7 +28,7 @@
         {% for project in projects %}
         <div class="service_item">
             <a class="page_3_link" href="{% url 'statuspage' %}">
-                <img class="bot_logos" src="{% static 'media/Web page 4.png' %}" alt="image">
+                <img class="bot_logos" src="{% static 'logos/Web page 4.png' %}" alt="image">
                 <p class="page_3_termo">{{ project.title }}</p>
                 <p class="page_3_cite">{{ project.category.title }}</p>
             </a>
