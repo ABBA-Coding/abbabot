@@ -10,7 +10,7 @@ def send_message(user_id):
     url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
     keyboard = {
         "inline_keyboard": [
-            [{"text": "Google", "web_app": {"url": settings.BASE_URL}}],
+            [{"text": "Abbaweb", "web_app": {"url": settings.BASE_URL}}],
         ]
     }
     reply_markup = json.dumps(keyboard)
