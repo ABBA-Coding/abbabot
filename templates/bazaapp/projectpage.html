@@ -1,42 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>AbbaWeb</title>
-    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
-
-</head>
-
-<body>
-<div class="container">
-    <div class="hider">
-        <img src="{% static 'logos/close.svg' %}" alt="">
-        <img src="{% static 'logos/logo.svg' %}" alt="">
-        <img src="{% static 'logos/menu.svg' %}" alt="">
-    </div>
-    <div class="hero_3">
-        <a href="{% url 'index' %}">
-            <img class="arrow_img_1" src="{% static 'logos/Arrow_Left_LG.png' %}" alt="">
-        </a>
-        <h1 class="hero_3_project">Proyektlar</h1>
-    </div>
+{% block header %}Proyektlar{% endblock %}
+{% block content %}
     <div class="service_list">
         {% for project in projects %}
-        <div class="service_item">
-            <a class="page_3_link" href="{% url 'statuspage' %}">
-                <img class="bot_logos" src="{% static 'logos/Web page 4.png' %}" alt="image">
-                <p class="page_3_termo">{{ project.title }}</p>
-                <p class="page_3_cite">{{ project.category.title }}</p>
-            </a>
-        </div>
+            <div class="service_item">
+                <a class="page_3_link" href="{% url 'statuspage' project.id %}">
+                    <img class="bot_logos" src="{% static 'logos/Web page 4.png' %}" alt="image">
+                    <p class="page_3_termo">{{ project.title }}</p>
+                    <p class="page_3_cite">{{ project.category.title }}</p>
+                </a>
+            </div>
         {% endfor %}
     </div>
-</div>
-
-</body>
-
-</html>
+{% endblock %}

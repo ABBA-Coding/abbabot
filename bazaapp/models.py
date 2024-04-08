@@ -1,11 +1,10 @@
 from django.db import models
 
 
-
 class HeadCategory(models.Model):
-    title = models.CharField(max_length=50, unique=True, null=True,blank=True,verbose_name="Departament")
+    title = models.CharField(max_length=50, unique=True, null=True, blank=True, verbose_name="Departament")
     owner = models.CharField(max_length=50, unique=True, null=True, blank=True, verbose_name="Ism Familya")
-    image = models.ImageField(null=True,blank=True,upload_to='images/')
+    image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def __str__(self):
         return self.title
@@ -15,12 +14,9 @@ class HeadCategory(models.Model):
         verbose_name_plural = "Departamentlar"
 
 
-
-
-
 class Category(models.Model):
     title = models.CharField(max_length=80, unique=True, null=True, blank=True, verbose_name="Xizmat turlari")
-    headcategory = models.ForeignKey(HeadCategory,on_delete=models.CASCADE,default=True)
+    headcategory = models.ForeignKey(HeadCategory, on_delete=models.CASCADE, default=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def __str__(self):
@@ -51,15 +47,14 @@ class Projects(models.Model):
 
 class Status(models.Model):
     title = models.CharField(max_length=90, unique=True, null=True, verbose_name="Proyekt Statusi")
-    headcategory = models.ForeignKey(HeadCategory, models.CASCADE,default=True)
+    headcategory = models.ForeignKey(HeadCategory, models.CASCADE, default=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def get_photo(self):
         try:
             return self.image.url
         except:
-            return 
-
+            return "#"
 
     def __str__(self):
         return self.title

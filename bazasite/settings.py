@@ -100,3 +100,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TELEGRAM_BOT_API = os.getenv("BOT_API")
 BASE_URL = os.getenv("BASE_URL", default="https://google.com")
+GROUP_ID = os.getenv("GROUP_ID")
