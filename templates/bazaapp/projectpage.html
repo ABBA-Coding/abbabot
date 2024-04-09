@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -24,19 +25,21 @@
         </a>
         <h1 class="hero_3_project">Proyektlar</h1>
     </div>
+=======
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}Proyektlar{% endblock %}
+{% block content %}
+>>>>>>> c88234e56fb75dc96f72d324eb74b30d8c18d228
     <div class="service_list">
         {% for project in projects %}
-        <div class="service_item">
-            <a class="page_3_link" href="{% url 'statuspage' %}">
-                <img class="bot_logos" src="{% static 'logos/Web page 4.png' %}" alt="image">
-                <p class="page_3_termo">{{ project.title }}</p>
-                <p class="page_3_cite">{{ project.category.title }}</p>
-            </a>
-        </div>
+            <div class="service_item">
+                <a class="page_3_link" href="{% url 'statuspage' project.id %}">
+                    <img class="bot_logos" src="{% static 'logos/Web page 4.png' %}" alt="image">
+                    <p class="page_3_termo">{{ project.title }}</p>
+                    <p class="page_3_cite">{{ project.category.title }}</p>
+                </a>
+            </div>
         {% endfor %}
     </div>
-</div>
-
-</body>
-
-</html>
+{% endblock %}

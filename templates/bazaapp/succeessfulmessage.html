@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -24,12 +25,14 @@
         </a>
         <h1 class="hero_5_h1">Xabar yuborildi</h1>
     </div>
+=======
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}Xabar yuborildi{% endblock %}
+{% block content %}
+>>>>>>> c88234e56fb75dc96f72d324eb74b30d8c18d228
     <div class="bottom_5">
         <img class="bottom_5_img" src="{% static 'logos/Check circle.png' %}" alt="">
         <h2 class="bottom_5_h2">Xabaringiz mijozga muvaffaqiyatli yuborildi</h2>
     </div>
-</div>
-
-</body>
-
-</html>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from pprint import pprint
 from .models import *
+from bot.functions import send_notification
 
 
 def index(request):
@@ -27,25 +28,24 @@ def projectpage(request):
     return render(request, "bazaapp/projectpage.html", context)
 
 
-def statuspage(request):
+def statuspage(request, product_id):
     status = Status.objects.all()[:12]
     leftstatus = Status.objects.all()[12:]
     context = {
         'status': status,
         'leftstatus': leftstatus,
-        'title': "ABBAWeb"
+        'title': "ABBAWeb",
+        'product_id': product_id
     }
 
     return render(request, "bazaapp/statuspage.html", context)
 
 
 def project_by_category(request, category_id):
-    category = Category.objects.get(pk=category_id)
     project = Projects.objects.filter(category__id=category_id)
     context = {
         'categories': Category.objects.all(),
         'projects': project,
-        'title': category.title
     }
     return render(request, 'bazaapp/projectpage.html', context)
 
@@ -53,14 +53,16 @@ def project_by_category(request, category_id):
 def head_by_category(request, headcategory_id):
     categories = Category.objects.filter(headcategory_id=headcategory_id)
     context = {
-        'headcategories': HeadCategory.objects.all(),
         'categories': categories,
-        'title': categories[0].title
     }
-    print(context['categories'])
     return render(request, 'bazaapp/categorypage.html', context)
 
 
-
-def send_message(request):
+def send_message(request, product_id, status_id):
+    product = Projects.objects.get(pk=product_id)
+    status = Status.objects.get(pk=status_id)
+    text = ("Yangi so'rov\n"
+            f"{product.title}\n"
+            f"{status.title}")
+    send_notification(text)
     return render(request, 'bazaapp/succeessfulmessage.html')

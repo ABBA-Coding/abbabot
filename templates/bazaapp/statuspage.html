@@ -1,52 +1,32 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>AbbaWeb</title>
-    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
-
-
-</head>
-
-<body>
-<div class="container">
-    <div class="hider">
-        <img src="{% static 'logos/close.svg' %}" alt="">
-        <img src="{% static 'logos/logo.svg' %}" alt="">
-        <img src="{% static 'logos/menu.svg' %}" alt="">
-    </div>
-    <div class="hero_4">
-        <a href="{% url 'index' %}">
-            <img class="arrow_img" src="{% static 'logos/Arrow_Left_LG.png' %}" alt="">
-        </a>
-        <h1 class="hero_4_termo">Jarayon</h1>
-    </div>
+{% extends 'base.html' %}
+{% block header %}Jarayon{% endblock %}
+{% block content %}
     <div class="hero_4_bottom">
         {% for status in status %}
-        <div class="page_4_">
-            <a class="page_4_link_1" href="#">
-                <img class="page_4_img" src="{{ status.get_photo }}" alt="">
-                <p class="page_4_analiz">{{ status.title }}</p>
-            </a>
-        </div>
+            <div class="page_4_">
+                <a class="page_4_link_1" href="#" onclick="updateStatusId({{ status.id }})">
+                    <img class="page_4_img" src="{{ status.get_photo }}" alt="">
+                    <p class="page_4_analiz">{{ status.title }}</p>
+                </a>
+            </div>
         {% endfor %}
         <h1 class="hero_44_termo">Branding bo'limi</h1>
     </div>
     <div class="hero_4_bottom">
         {% for status in leftstatus %}
-        <div class="page_4_">
-            <a class="page_4_link_1" href="#">
-                <img class="page_4_img" src="{{ status.get_photo }}" alt="">
-                <p class="page_4_analiz">{{ status.title }}</p>
-            </a>
-        </div>
+            <div class="page_4_">
+                <a class="page_4_link_1" href="#" onclick="updateStatusId({{ status.id }})">
+                    <img class="page_4_img" src="{{ status.get_photo }}" alt="">
+                    <p class="page_4_analiz">{{ status.title }}</p>
+                </a>
+            </div>
         {% endfor %}
     </div>
+    <a class="bottom_end" id="send-message-link" href="#">
+        <h1 class="bottom_end_h1">Mijozga xabarni yuborish</h1>
+    </a>
 
+<<<<<<< HEAD
     <a class="bottom_end" href="{% url 'sendmessage' %}">
         <h1 class="bottom_end_h1">Mijozga xabarni yuborish</h1>
     </a>
@@ -55,3 +35,13 @@
 </body>
 
 </html>
+=======
+    <script>
+        function updateStatusId(statusId) {
+            var productId = {{ product_id }}; // Assuming you have access to the product_id variable
+            var sendLink = document.getElementById('send-message-link');
+            sendLink.href = "{% url 'sendmessage' product_id=0 status_id=0 %}".replace('0', productId).replace('0', statusId);
+        }
+    </script>
+{% endblock %}
+>>>>>>> c88234e56fb75dc96f72d324eb74b30d8c18d228
