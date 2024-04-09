@@ -61,8 +61,8 @@ def head_by_category(request, headcategory_id):
 def send_message(request, product_id, status_id):
     product = Projects.objects.get(pk=product_id)
     status = Status.objects.get(pk=status_id)
-    text = ("Yangi so'rov\n"
-            f"{product.title}\n"
-            f"{status.title}")
+    text = ("Yangi so'rov:\n"
+            f"Proyekt: {product.title}\n"
+            f"Jarayoni: {status.title}")
     send_notification(text)
     return render(request, 'bazaapp/succeessfulmessage.html')
