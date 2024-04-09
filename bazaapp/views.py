@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.views.generic import ListView
-from pprint import pprint
 from .models import *
 from bot.functions import send_notification
 

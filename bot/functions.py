@@ -8,6 +8,7 @@ url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
 GROUP_ID = settings.GROUP_ID
 
 
+
 def send_message(user_id):
     keyboard = {
         "inline_keyboard": [
@@ -31,3 +32,10 @@ def send_notification(text):
         'text': text
     }
     requests.post(url, json=payload)
+
+
+
+
+
+
+
