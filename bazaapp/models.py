@@ -49,6 +49,7 @@ class Status(models.Model):
     title = models.CharField(max_length=90, unique=True, null=True, verbose_name="Proyekt Statusi")
     headcategory = models.ForeignKey(HeadCategory, models.CASCADE, default=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
+    deadline = models.CharField(max_length=15,blank=True, verbose_name='Deadline Vaqti')
 
     def get_photo(self):
         try:
