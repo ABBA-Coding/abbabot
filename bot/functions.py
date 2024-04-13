@@ -3,6 +3,7 @@ import json
 from celery import Celery
 from celery.schedules import crontab
 import os
+from bazaapp.models import TelegramGroups, Projects, Status
 
 from django.conf import settings
 
@@ -30,20 +31,22 @@ def send_message(user_id):
     requests.post(url, json=payload)
 
 
-def periodic_send_message(user_id):
-    keyboard = {
-        "inline_keyboard": [
-            [{"text": "Abbaweb", "web_app": {"url": settings.BASE_URL}}],
-        ]
-    }
-    reply_markup = json.dumps(keyboard)
-    message_text = 'Ushbu havola orqali kiring:'
-    payload = {
-        'chat_id': user_id,
-        'text': message_text,
-        'reply_markup': reply_markup
-    }
-    requests.post(url, json=payload)
+def periodic_send_message():
+    for i in TelegramGroups.objects.all():
+        try:
+            for project in Projects.objects.all():
+                for status in Status.objects.all():
+                    message_text = (f'Proyekt nomi: {project.title},'
+                            f'Jarayoni: {status.title}'
+                                    f'Deadline: {project.created_at}')
+                    payload = {
+                        'chat_id': i.group.id,
+                        'text': message_text
+                    }
+                    requests.post(url, json=payload)
+        except:
+            print("Guruh id ishlamayabdi")
+
 
 app.config_from_object('django.conf.settings', namespace='CELERY')
 app.autodiscover_tasks()

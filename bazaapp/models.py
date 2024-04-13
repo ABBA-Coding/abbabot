@@ -48,6 +48,8 @@ class Category(models.Model):
 class Projects(models.Model):
     title = models.CharField(max_length=255, unique=True, null=True, blank=True, verbose_name='Proyekt')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    group = models.ForeignKey(TelegramGroups, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -61,8 +63,6 @@ class Status(models.Model):
     title = models.CharField(max_length=90, unique=True, null=True, verbose_name="Proyekt Statusi")
     headcategory = models.ForeignKey(HeadCategory, models.CASCADE, default=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
-    deadline = models.CharField(max_length=15, blank=True, null=True, default='Deadline Vaqti')
-
     def get_photo(self):
         try:
             return self.image.url
