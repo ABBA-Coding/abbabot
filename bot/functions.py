@@ -1,7 +1,6 @@
 import requests
 import json
-from celery import Celery
-from celery.schedules import crontab
+
 import os
 from bazaapp.models import TelegramGroups, Projects, Status
 
@@ -12,7 +11,7 @@ url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
 GROUP_ID = settings.GROUP_ID
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bazasite.settings')
-app = Celery('bazasite')
+
 
 
 def send_message(user_id):
@@ -47,16 +46,6 @@ def periodic_send_message():
         except:
             print("Guruh id ishlamayabdi")
 
-
-app.config_from_object('django.conf.settings', namespace='CELERY')
-app.autodiscover_tasks()
-
-app.conf.beat_schedule ={
-    'daily-function': {
-        'task': 'bot.function.periodic_send_message',
-        'schedule': crontab(hour='16', minute='00'),
-    }
-}
 
 
 def send_notification(text):
