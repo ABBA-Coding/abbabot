@@ -105,7 +105,7 @@ GROUP_ID = os.getenv("GROUP_ID")
 
 CELERY_TIMEZONE = "Asia/Tashkent"
 CELERY_TASK_TRACK_STARTED = True
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", default='redis://localhost:5379/8')
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", default='redis://localhost:6379/8')
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
