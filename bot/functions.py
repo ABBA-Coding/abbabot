@@ -35,8 +35,8 @@ def periodic_send_message():
         try:
             for project in Projects.objects.all():
                 for status in Status.objects.all():
-                    message_text = (f'Proyekt nomi: {project.title},'
-                            f'Jarayoni: {status.title}'
+                    message_text = (f'Proyekt nomi: {project.title}'
+                                    f'Jarayoni: {status.title}'
                                     f'Proyekt Vaqti: {project.created_at}')
                     payload = {
                         'chat_id': i.group.id,
