@@ -49,6 +49,7 @@ class Projects(models.Model):
     title = models.CharField(max_length=255, unique=True, null=True, blank=True, verbose_name='Proyekt')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     group = models.ForeignKey(TelegramGroups, on_delete=models.CASCADE, null=True, blank=True)
+    status = models.ForeignKey("Status", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
