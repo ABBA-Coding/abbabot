@@ -1,38 +1,10 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block header %}Xabar yuborildi{% endblock %}
+{% block content %}
+<div class="bottom_5">
+    <img class="bottom_5_img" src="{% static 'logos/Check circle.png' %}" alt="">
+    <h2 class="bottom_5_h2">Xabaringiz mijozga muvaffaqiyatli yuborildi</h2>
+</div>
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>AbbaWeb</title>
-    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
-
-</head>
-
-<body>
-<div class="container">
-    <div class="hider">
-        <img src="{% static 'logos/close.svg' %}" alt="">
-        <img src="{% static 'logos/logo.svg' %}" alt="">
-        <img src="{% static 'logos/menu.svg' %}" alt="">
-    </div>
-    <div class="hero_5">
-        <a href="{% url 'index' %}">
-            <img class="arrow_img_home" src="{% static 'logos/Home.png' %}" alt="">
-        </a>
-        <h1 class="hero_5_h1">Xabar yuborildi</h1>
-    </div>
-    =======
-    {% load static %}
-    {% block header %}Xabar yuborildi{% endblock %}
-    {% block content %}
-    <div class="bottom_5">
-        <img class="bottom_5_img" src="{% static 'logos/Check circle.png' %}" alt="">
-        <h2 class="bottom_5_h2">Xabaringiz mijozga muvaffaqiyatli yuborildi</h2>
-    </div>
-    {% endblock %}
-    >>>>>>> c88234e56fb75dc96f72d324eb74b30d8c18d228
