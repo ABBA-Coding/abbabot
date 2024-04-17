@@ -36,8 +36,8 @@ def periodic_send_message():
     for i in TelegramGroups.objects.all():
         try:
             for project in Projects.objects.all():
-                    message_text = (f'Proyekt nomi: {project.title}'
-                                    f'Jarayoni: {project.status.title}'
+                    message_text = (f'Proyekt nomi: {project.title}\n',
+                                    f'Jarayoni: {project.status.title}\n'
                                     f'Proyekt Vaqti: {project.created_at}')
                     payload = {
                         'chat_id': i.group_id,
