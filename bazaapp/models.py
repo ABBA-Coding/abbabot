@@ -17,6 +17,7 @@ class HeadCategory(models.Model):
 class TelegramGroups(models.Model):
     name = models.CharField(max_length=150, unique=True, null=True, blank=True, verbose_name="Telegram Guruh")
     group_id = models.CharField(max_length=120, null=True, blank=True, verbose_name='Telegram Guruh IDsi')
+    headgroups = models.ForeignKey(HeadCategory, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
