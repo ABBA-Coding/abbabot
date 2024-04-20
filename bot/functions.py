@@ -1,6 +1,7 @@
 import requests
 import json
 from celery import shared_task
+from datetime import time
 
 import os
 from bazaapp.models import TelegramGroups, Projects, Status
@@ -35,9 +36,11 @@ def periodic_send_message():
     for i in TelegramGroups.objects.all():
         try:
             for project in Projects.objects.all():
-                message_text = (f'Proyekt nomi: {project.title}\n',
-                                f'Jarayoni: {project.status.title}\n'
-                                f'Proyekt Vaqti: {project.created_at}')
+                todays_day = project.created_at.day - date.today().day + 1
+                message_text = (f"Proyekt nomi: {project.title}\n"
+                                f"Jarayoni: {project.status.title}\n"
+                                f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
+                                f"Jarayonlar vaqti: {project.deadline_time}")
                 payload = {
                     'chat_id': i.group_id,
                     'text': message_text

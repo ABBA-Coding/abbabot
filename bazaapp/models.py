@@ -74,7 +74,8 @@ class Projects(models.Model):
     def get_day(self):
         month_number = self.created_at.month
         month_name = month_in_uzbek.get(month_number)
-        return f"{self.created_at.day} {month_name}"
+        day = self.created_at.day
+        return f"{day} {month_name}"
 
     def __str__(self):
         return self.title

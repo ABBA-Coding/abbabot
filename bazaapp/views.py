@@ -67,27 +67,29 @@ def send_message(request, product_id, status_id):
     return render(request, 'bazaapp/succeessfulmessage.html')
 
 
-import requests
-from django.conf import settings
-from django.http import HttpResponse
+# import requests
+# from django.conf import settings
+# from django.http import HttpResponse
+#
+# bot_token = settings.TELEGRAM_BOT_API
+# url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+# GROUP_ID = settings.GROUP_ID
 
-bot_token = settings.TELEGRAM_BOT_API
-url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
-GROUP_ID = settings.GROUP_ID
-
-
-def periodic_send_message(request):
-    for i in TelegramGroups.objects.all():
-        try:
-            for project in Projects.objects.all():
-                message_text = (f'Proyekt nomi: {project.title}\n',
-                                f'Jarayoni: {project.status.title}\n'
-                                f'Proyekt Vaqti: {project.created_at}')
-                payload = {
-                    'chat_id': i.group_id,
-                    'text': message_text
-                }
-                requests.post(url, json=payload)
-        except:
-            print("Guruh id ishlamayabdi")
-    return HttpResponse('ok')
+# from datetime import date
+# def periodic_send_message(request):
+#     for i in TelegramGroups.objects.all():
+#         try:
+#             for project in Projects.objects.all():
+#                 todays_day = project.created_at.day - date.today().day + 1
+#                 message_text = (f"Proyekt nomi: {project.title}\n"
+#                                 f"Jarayoni: {project.status.title}\n"
+#                                 f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
+#                                 f"Jarayonlar vaqti: {project.deadline_time}")
+#                 payload = {
+#                     'chat_id': i.group_id,
+#                     'text': message_text
+#                 }
+#                 requests.post(url, json=payload)
+#         except Exception as e:
+#             print(e)
+#     return render(request,'bazaapp/index.html')
