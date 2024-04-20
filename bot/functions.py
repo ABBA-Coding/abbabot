@@ -14,7 +14,6 @@ GROUP_ID = settings.GROUP_ID
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bazasite.settings')
 
 
-
 def send_message(user_id):
     keyboard = {
         "inline_keyboard": [
@@ -36,20 +35,19 @@ def periodic_send_message():
     for i in TelegramGroups.objects.all():
         try:
             for project in Projects.objects.all():
-                    message_text = (f'Proyekt nomi: {project.title}\n',
-                                    f'Jarayoni: {project.status.title}\n'
-                                    f'Proyekt Vaqti: {project.created_at}')
-                    payload = {
-                        'chat_id': i.group_id,
-                        'text': message_text
-                    }
-                    requests.post(url, json=payload)
+                message_text = (f'Proyekt nomi: {project.title}\n',
+                                f'Jarayoni: {project.status.title}\n'
+                                f'Proyekt Vaqti: {project.created_at}')
+                payload = {
+                    'chat_id': i.group_id,
+                    'text': message_text
+                }
+                requests.post(url, json=payload)
         except:
             print("Guruh id ishlamayabdi")
 
 
-
-def send_notification(text,group_id):
+def send_notification(text, group_id):
     payload = {
         'chat_id': group_id,
         'text': text

@@ -45,13 +45,36 @@ class Category(models.Model):
         verbose_name = "Xizmat turi"
         verbose_name_plural = "Xizmat turlari"
 
+month_in_uzbek = {
+    1: "Yanvar",
+    2: "Fevral",
+    3: "Mart",
+    4: "Aprel",
+    5: "May",
+    6: "Iyun",
+    7: "Iyul",
+    8: "Avgust",
+    9: "Sentyabr",
+    10: "Oktyabr",
+    11: "Noyabr",
+    12: "Dekabr"
+}
+
+
+
 
 class Projects(models.Model):
     title = models.CharField(max_length=255, unique=True, null=True, blank=True, verbose_name='Proyekt')
+    deadline_time = models.CharField(max_length=80, null=True, blank=True, verbose_name='Proyekt vaqti')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     group = models.ForeignKey(TelegramGroups, on_delete=models.CASCADE, null=True, blank=True)
     status = models.ForeignKey("Status", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def get_day(self):
+        month_number = self.created_at.month
+        month_name = month_in_uzbek.get(month_number)
+        return f"{self.created_at.day} {month_name}"
 
     def __str__(self):
         return self.title
