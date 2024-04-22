@@ -41,7 +41,7 @@ def periodic_send_message():
                             f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
                             f"Jarayonlar vaqti: {project.deadline_time}")
             payload = {
-                'chat_id': project.group,
+                'chat_id': project.group.group_id,
                 'text': message_text
             }
             requests.post(url, json=payload)

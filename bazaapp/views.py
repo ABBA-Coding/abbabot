@@ -87,9 +87,10 @@ def send_message(request, product_id, status_id):
 #                             f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
 #                             f"Jarayonlar vaqti: {project.deadline_time}")
 #             payload = {
-#                 'chat_id': project.group_id,
+#                 'chat_id': project.group.group_id,
 #                 'text': message_text
 #             }
+#             print(project.group.group_id)
 #             requests.post(url, json=payload)
 #     except Exception as e:
 #         print(e)
