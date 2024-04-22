@@ -45,6 +45,7 @@ class Category(models.Model):
         verbose_name = "Xizmat turi"
         verbose_name_plural = "Xizmat turlari"
 
+
 month_in_uzbek = {
     1: "Yanvar",
     2: "Fevral",
@@ -59,8 +60,6 @@ month_in_uzbek = {
     11: "Noyabr",
     12: "Dekabr"
 }
-
-
 
 
 class Projects(models.Model):
@@ -89,6 +88,7 @@ class Status(models.Model):
     title = models.CharField(max_length=90, unique=True, null=True, verbose_name="Proyekt Statusi")
     headcategory = models.ForeignKey(HeadCategory, models.CASCADE, default=True)
     image = models.ImageField(null=True, blank=True, upload_to='images/')
+
     def get_photo(self):
         try:
             return self.image.url

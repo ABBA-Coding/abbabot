@@ -33,21 +33,20 @@ def send_message(user_id):
 
 @shared_task
 def periodic_send_message():
-    for i in TelegramGroups.objects.all():
-        try:
-            for project in Projects.objects.all():
-                todays_day = project.created_at.day - date.today().day + 1
-                message_text = (f"Proyekt nomi: {project.title}\n"
-                                f"Jarayoni: {project.status.title}\n"
-                                f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
-                                f"Jarayonlar vaqti: {project.deadline_time}")
-                payload = {
-                    'chat_id': i.group_id,
-                    'text': message_text
-                }
-                requests.post(url, json=payload)
-        except:
-            print("Guruh id ishlamayabdi")
+    try:
+        for project in Projects.objects.filter(is_finished=False):
+            todays_day = project.created_at.day - date.today().day + 1
+            message_text = (f"Proyekt nomi: {project.title}\n"
+                            f"Jarayoni: {project.status.title}\n"
+                            f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
+                            f"Jarayonlar vaqti: {project.deadline_time}")
+            payload = {
+                'chat_id': project.group,
+                'text': message_text
+            }
+            requests.post(url, json=payload)
+    except:
+        print("Guruh id ishlamayabdi")
 
 
 def send_notification(text, group_id):

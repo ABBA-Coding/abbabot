@@ -6,7 +6,7 @@ urlpatterns = [
     path('category/<int:category_id>/', project_by_category, name='projects'),
     path('headcategory/<int:headcategory_id>/', head_by_category, name='headcategory'),
     path('projectspage', projectpage, name='projectpage'),
-    # path('test', periodic_send_message, name='test'),
+    path('test', periodic_send_message, name='test'),
     path('statuspage/<int:product_id>/', statuspage, name='statuspage'),
     path('sendmessage/<int:product_id>/<int:status_id>/', send_message, name='sendmessage'),
 ]

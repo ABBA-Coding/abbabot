@@ -60,36 +60,39 @@ def send_message(request, product_id, status_id):
     project = Projects.objects.get(pk=product_id)
     status = Status.objects.get(pk=status_id)
     text = (f"Proyekt nomi: {project.title}\n"
-        f"Jarayoni: {status.title}\n"
-        f"Boshlangan vaqti: {project.get_day()}\n"
-        f"Jarayonlar vaqti: {project.deadline_time}")
+            f"Jarayoni: {status.title}\n"
+            f"Boshlangan vaqti: {project.get_day()}\n"
+            f"Jarayonlar vaqti: {project.deadline_time}")
     send_notification(text, project.group.group_id)
     return render(request, 'bazaapp/succeessfulmessage.html')
 
 
-# import requests
-# from django.conf import settings
-# from django.http import HttpResponse
-#
-# bot_token = settings.TELEGRAM_BOT_API
-# url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
-# GROUP_ID = settings.GROUP_ID
+import requests
+from django.conf import settings
+from django.http import HttpResponse
 
-# from datetime import date
-# def periodic_send_message(request):
-#     for i in TelegramGroups.objects.all():
-#         try:
-#             for project in Projects.objects.all():
-#                 todays_day = project.created_at.day - date.today().day + 1
-#                 message_text = (f"Proyekt nomi: {project.title}\n"
-#                                 f"Jarayoni: {project.status.title}\n"
-#                                 f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
-#                                 f"Jarayonlar vaqti: {project.deadline_time}")
-#                 payload = {
-#                     'chat_id': i.group_id,
-#                     'text': message_text
-#                 }
-#                 requests.post(url, json=payload)
-#         except Exception as e:
-#             print(e)
-#     return render(request,'bazaapp/index.html')
+bot_token = settings.TELEGRAM_BOT_API
+url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
+GROUP_ID = settings.GROUP_ID
+
+from datetime import date
+
+
+def periodic_send_message(request):
+    try:
+        for project in Projects.objects.all():
+            todays_day = project.created_at.day - date.today().day + 1
+            message_text = (f"Proyekt nomi: {project.title}\n"
+                            f"Jarayoni: {project.status.title}\n"
+                            f"Boshlangan vaqti: {project.get_day()} {todays_day}-kun\n"
+                            f"Jarayonlar vaqti: {project.deadline_time}")
+            payload = {
+                'chat_id': project.group_id,
+                'text': message_text
+            }
+            requests.post(url, json=payload)
+    except Exception as e:
+        print(e)
+
+
+    return render(request, 'bazaapp/index.html')

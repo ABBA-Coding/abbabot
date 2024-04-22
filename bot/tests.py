@@ -1,5 +1,5 @@
-from django.test import TestCase
-
-# Create your tests here.
+import random
 
 
+lst = [1, 3, 4, 6, 7]
+print(lst)
