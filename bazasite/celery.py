@@ -10,6 +10,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'daily-function': {
         'task': 'bot.functions.periodic_send_message',
-        'schedule': crontab(hour=12),
+        'schedule': crontab(hour=11),
     }
 }
